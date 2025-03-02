@@ -4,20 +4,22 @@ macro_rules! rasm {
         let mut variables: Vec<&str> = vec![];
 
         $(
-            if stringify!($keyword) == "out" {
-                println!($value);
-            }
+            match stringify!($keyword) {
+                "out" => {
+                    println!("{}", $value);
+                }
 
-            else if stringify!($keyword) == "var" {
-                variables.push($value);
-            }
+                "var" => {
+                    variables.push($value);
+                }
 
-            else if stringify!($keyword) == "outv" {
-                println!("{}", variables[$value.parse::<usize>().unwrap()]);
-            }
+                "outv" => {
+                    println!("{}", variables[$value.parse::<usize>().unwrap()]);
+                }
 
-            else {
-                println!("Unknown keyword!");
+                _ => {
+                    println!("Unknown keyword!");
+                }
             }
         )*
     };
