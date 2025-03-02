@@ -1,6 +1,6 @@
 #[macro_export]
 macro_rules! rasm {
-    ( $( $keyword:ident $value:expr );* ) => {
+    ( $( $keyword:tt $value:expr );* ) => {
         let mut variables: Vec<&str> = vec![];
 
         $(
